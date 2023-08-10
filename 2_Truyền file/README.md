@@ -145,7 +145,7 @@ sẽ trỏ tới byte đầu tiên của content. Kích thước lý thuyết c�
 Vì thế phần content thừa sẽ là từ pos + 4 cho tới res + size. Ta cần ghi lại phần này 
 vào file.
 */
-if (size - (pos - res) - 3 > 0) fwrite(pos + 4, 1, size - (pos - res) - 3);
+if (size - (pos - res) - 3 > 0) fwrite(pos + 4, 1, size - (pos - res) - 3, f);
 ```
 
 Và cuối cùng là ghi phần còn lại vào và kết thúc ghi file

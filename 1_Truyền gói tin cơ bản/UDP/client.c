@@ -18,24 +18,19 @@ int main(int argc, char const* argv[]) {
 	servAddr.sin_port = htons(4889); // use some unused port number
 	servAddr.sin_addr.s_addr = INADDR_ANY;
 
-	int connectStatus = 1;
 
-	if (connectStatus == -1) {
-		printf("Error...\n");
-	} else {
-		char buffer[BUFFER_SIZE];
-		const char* quit = "QUIT";
-		char msg[] = "HELLO Server";
-		while (1) {
-			printf("Client: ");
-			scanf("%[^\n]%*c", buffer);
-			sendto(sockD, buffer, sizeof(buffer), 0, (struct sockaddr*)&servAddr, slen);
-			if (strcmp(buffer, quit) == 0) break;
-			int r = recvfrom(sockD, buffer, sizeof(buffer), 0, (struct sockaddr*)&servAddr, &slen);
-			if (r > 0) printf("Server: %s\n", buffer);
-		}
-		
+	char buffer[BUFFER_SIZE];
+	const char* quit = "QUIT";
+	char msg[] = "HELLO Server";
+	while (1) {
+		printf("Client: ");
+		scanf("%[^\n]%*c", buffer);
+		sendto(sockD, buffer, sizeof(buffer), 0, (struct sockaddr*)&servAddr, slen);
+		if (strcmp(buffer, quit) == 0) break;
+		int r = recvfrom(sockD, buffer, sizeof(buffer), 0, (struct sockaddr*)&servAddr, &slen);
+		if (r > 0) printf("Server: %s\n", buffer);
 	}
+		
 
 	return 0;
 }
